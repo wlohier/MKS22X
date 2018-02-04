@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Recursion{
 
-    public static int fact(int n){ // basic factorial funcion, breaks down for larger numbers
+    public int fact(int n){ // basic factorial funcion, breaks down for larger numbers
 	if(n < 0){
 	    throw new IllegalArgumentException();
 	}
@@ -13,21 +13,21 @@ public class Recursion{
     }
     
 
-    public static int fib(int n){
+    public int fib(int n){ //calculates the nth term of the fibonacci sequence
 	if(n < 0){
 	    throw new IllegalArgumentException();
 	}
 	return fibHelp(0, 1, n);
     }
 
-    public static int fibHelp(int t0, int t1, int n){
+    public int fibHelp(int t0, int t1, int n){ //cycles through the fibonacci sequence starting with 0 and 1
 	if(n == 0){
 	    return t0;
 	}
 	return fibHelp(t1, t0 + t1, n-1);
     }
 
-    public static double sqrt(double n){
+    public double sqrt(double n){ //calculates an estimate of the square root of n
 	if(n < 0){
 	    throw new IllegalArgumentException();
 	}
@@ -37,41 +37,12 @@ public class Recursion{
 	return sqrtHelp(n/2, n);
     }
 
-    public static double sqrtHelp(double guess, double n){
-	if(java.lang.Math.abs(((Math.pow(guess, 2) - n)/2)) < .00001){
+    public double sqrtHelp(double guess, double n){//uses Newton's formula to obtain increasingly accurate square root guesses
+	if(java.lang.Math.abs(((Math.pow(guess, 2) - n)/2)) < .00001){ //checks to make sure estimate squared is close to the actual number
 	    return guess;
 	}
 	double newGuess = (n/guess + guess)/2;
 	return(sqrtHelp(newGuess, n));
-    }
-
-
-
-
-
-    
-    public static void main(String[] args){
-	//System.out.println(factorial(-2));
-	//	System.out.println(fact(0));
-	//	System.out.println(fact(1));
-	//	System.out.println(fact(5));
-	//        System.out.println(fact(11));
-	//	System.out.println(fact(12));
-	//System.out.println(fib(-1));
-	//System.out.println(fib(0));
-	//System.out.println(fib(1));
-	//System.out.println(fib(10));
-	//System.out.println(fib(20));
-	//System.out.println(fib(30));
-	//System.out.println(sqrt(-1));
-	System.out.println(sqrt(0));
-	System.out.println(sqrt(1));
-	System.out.println(sqrt(2));
-	System.out.println(sqrt(9));
-	System.out.println(sqrt(100));
-	System.out.println(sqrt(150));
-	System.out.println(sqrt(400));
-	System.out.println(sqrt(1.5));
     }
 
 }
