@@ -27,6 +27,24 @@ public class Recursion{
 	return fibHelp(t1, t0 + t1, n-1);
     }
 
+    public static double sqrt(double n){
+	if(n < 0){
+	    throw new IllegalArgumentException();
+	}
+	if(n == 0){
+	    return 0;
+	}
+	return sqrtHelp(n/2, n);
+    }
+
+    public static double sqrtHelp(double guess, double n){
+	if(java.lang.Math.abs(((Math.pow(guess, 2) - n)/2)) < .00001){
+	    return guess;
+	}
+	double newGuess = (n/guess + guess)/2;
+	return(sqrtHelp(newGuess, n));
+    }
+
 
 
 
@@ -40,11 +58,20 @@ public class Recursion{
 	//        System.out.println(fact(11));
 	//	System.out.println(fact(12));
 	//System.out.println(fib(-1));
-	System.out.println(fib(0));
-	System.out.println(fib(1));
-	System.out.println(fib(10));
-	System.out.println(fib(20));
-	System.out.println(fib(30));
+	//System.out.println(fib(0));
+	//System.out.println(fib(1));
+	//System.out.println(fib(10));
+	//System.out.println(fib(20));
+	//System.out.println(fib(30));
+	//System.out.println(sqrt(-1));
+	System.out.println(sqrt(0));
+	System.out.println(sqrt(1));
+	System.out.println(sqrt(2));
+	System.out.println(sqrt(9));
+	System.out.println(sqrt(100));
+	System.out.println(sqrt(150));
+	System.out.println(sqrt(400));
+	System.out.println(sqrt(1.5));
     }
 
 }
