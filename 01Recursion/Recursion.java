@@ -45,4 +45,18 @@ public class Recursion{
 	return(sqrtHelp(newGuess, n));
     }
 
+    public static boolean isPossibleSum(int n, int target){ //returns whether target is a possible branch of the tree we went over in class with the correct number of levels
+	if(n < 0){
+	    throw new IllegalArgumentException();
+	}
+	return possibleSumHelp(n, target, 0);
+    }
+
+    public static boolean possibleSumHelp(int n, int target, int sum){
+	if(n == 0){
+	    return target == sum;
+	}
+	return(possibleSumHelp(n - 1, target, sum + n) || possibleSumHelp(n - 1, target, sum));
+    }
+
 }
