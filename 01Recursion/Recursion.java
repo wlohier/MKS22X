@@ -54,6 +54,7 @@ public class Recursion{
 
     public static boolean possibleSumHelp(int n, int target, int sum){
 	if(n == 0){
+	    System.out.println(sum);
 	    return target == sum;
 	}
 	return(possibleSumHelp(n - 1, target, sum + n) || possibleSumHelp(n - 1, target, sum));
