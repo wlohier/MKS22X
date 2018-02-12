@@ -60,20 +60,21 @@ public class QueenBoard{
     }
 
     public boolean solve(){
-	return solveHelp(0, 0);
+	return solveHelp(0);
     }
 
-    public boolean solveHelp(int r, int c){
-	if(r > board.length){
+    public boolean solveHelp(int r){
+	if(r == board.length){
 	    return true;
 	}
-	if(addKween(r, c)){
-	    return solveHelp(r + 1, 0);
-	}else if(c != board.length){
-	    return solveHelp(r, c + 1);
-	}else if(r != 1 && removeKween(r - 1, lastKweens(r-1))){
-	    return solveHelp(r-1, lastKweens(r-1) + 1);
-	} return false;
+        for(int col = 0; col < board.length; col++){
+	    if(addKween(r, col)){
+		if(solveHelp(r+1)){
+		    return true;
+		}
+	    }removeKween(r, col);
+	}
+	return false;
     }
 
     public int lastKweens(int r){
