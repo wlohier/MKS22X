@@ -33,6 +33,7 @@ public class QueenBoard{
     }
 
     public boolean removeKween(int r, int c){
+	try{
 	if(board[r][c] == -1){
 	    board[r][c] = 0;
 	    for(int row = r + 1; row < board.length; row++){
@@ -52,7 +53,37 @@ public class QueenBoard{
 	    }
 	    return true;
 	} return false;
+	}
+	catch(ArrayIndexOutOfBoundsException e){
+	    return false;
+	}
     }
+
+    public boolean solve(){
+	return solveHelp(0, 0);
+    }
+
+    public boolean solveHelp(int r, int c){
+	if(r > board.length){
+	    return true;
+	}
+	if(addKween(r, c)){
+	    return solveHelp(r + 1, 0);
+	}else if(c != board.length){
+	    return solveHelp(r, c + 1);
+	}else if(r != 1 && removeKween(r - 1, lastKweens(r-1))){
+	    return solveHelp(r-1, lastKweens(r-1) + 1);
+	} return false;
+    }
+
+    public int lastKweens(int r){
+	for(int i = board.length - 1; i > 0; i--){
+	    if(board[r][i] == -1){
+		return i;
+	    }
+	} return -1;
+    }
+    
 
     public String toString(){
 	String ans = "";
