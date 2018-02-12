@@ -63,7 +63,7 @@ public class QueenBoard{
 	return solveHelp(0);
     }
 
-    public boolean solveHelp(int r){
+    private boolean solveHelp(int r){
 	if(r == board.length){
 	    return true;
 	}
@@ -77,14 +77,20 @@ public class QueenBoard{
 	return false;
     }
 
-    public int lastKweens(int r){
-	for(int i = board.length - 1; i > 0; i--){
-	    if(board[r][i] == -1){
-		return i;
-	    }
-	} return -1;
+    public int countSolutions(){
+	return countHelp(0);
     }
-    
+
+    private int solveHelp(int r){
+	if(r == board.length){
+	    return 1;
+	}
+	for(int col = 0; col < board.length; col++){
+	    if(addKween(r, col)){
+		return 
+	    }
+	}
+    }
 
     public String toString(){
 	String ans = "";
