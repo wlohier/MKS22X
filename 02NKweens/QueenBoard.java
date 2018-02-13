@@ -81,15 +81,16 @@ public class QueenBoard{
 	return countHelp(0);
     }
 
-    private int solveHelp(int r){
+    private int countHelp(int r){
+	int sum = 0;
 	if(r == board.length){
 	    return 1;
 	}
 	for(int col = 0; col < board.length; col++){
 	    if(addKween(r, col)){
-		return 
-	    }
-	}
+		sum += (countHelp(r + 1));
+	    } removeKween(r, col);
+	} return sum;
     }
 
     public String toString(){
