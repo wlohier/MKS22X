@@ -1,5 +1,7 @@
 public class KnightBoard{
     private int[][] board;
+    private int[][] positions = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2},
+				 {2, 1}, {2, -1}, {-1, 2}, {-1, -2}};
     public KnightBoard(int rows, int cols){
 	if(rows < 0 || cols < 0){
 	    throw new IllegalArgumentException();
@@ -10,6 +12,25 @@ public class KnightBoard{
 		board[i][j] = 0;
 	    }
 	}
+    }
+
+    public boolean solve(int startRow, int startCol){
+    }
+
+    public boolean solveHelp(int startRow, int startCol, int num){
+	int thisRow = startRow + positions[i][0];
+	int thisCol = startCol + positions[i][1
+	if(num > board.length * board[0].length){
+	    return true;
+	}
+	for(int i = 0; i < positions.length; i++){
+	    if(board[thisRow][thisCol] == 0){
+		board[thisRow][thisCol] = num;
+		solveHelp(thisRow, thisCol, num+1);
+	    }
+	}
+					      
+					      
     }
 
     public String toString(){
