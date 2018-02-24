@@ -14,7 +14,19 @@ public class KnightBoard{
 	}
     }
 
+
+    public void checkBoard(){
+	for(int i = 0; i < board.length; i++){
+	    for(int j = 0; j < board.length; j++){
+		if(board[i][j] != 0){
+		    throw new IllegalStateException();
+		}
+	    }
+	}
+    }
+    
     public boolean solve(int startRow, int startCol){
+	checkBoard();
 	return solveHelp(startRow, startCol, 1);
     }
 
