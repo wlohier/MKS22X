@@ -35,18 +35,19 @@ public class KnightBoard{
 	if(num > board.length * board[0].length){
 	    return true;
 	}
+        if(startRow >= board.length || startRow < 0 ||
+	   startCol >= board[0].length || startCol < 0){
+	    return false;
+	}
 	for(int i = 0; i < positions.length; i++){
 	    int thisRow = startRow + positions[i][0];
 	    int thisCol = startCol + positions[i][1];
-	    if(thisRow >= board.length || thisRow < 0 ||
-	       thisCol >= board[0].length || thisCol < 0){
-		return false;
-	    }
-	    else if(board[thisRow][thisCol] == 0){
+	    if(board[thisRow][thisCol] == 0){
 		board[startRow][startCol] = num;
 		solveHelp(thisRow, thisCol, num+1);
 	    }
-	} return false;
+	}
+	return false;
     }
 
     public String toString(){
