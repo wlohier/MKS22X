@@ -28,8 +28,7 @@ public class KnightBoard{
     
     public boolean solve(int startRow, int startCol){
 	//checkBoard();
-	board[startRow][startCol] = 1;
-	return solveHelp(startRow, startCol, 2);
+	return solveHelp(startRow, startCol, 1);
     }
 
     public boolean solveHelp(int startRow, int startCol, int num){
@@ -39,8 +38,8 @@ public class KnightBoard{
 	for(int i = 0; i < positions.length; i++){
 	    int thisRow = startRow + positions[i][0];
 	    int thisCol = startCol + positions[i][1];
-	    if(thisRow > board.length || thisRow < 0 ||
-	       thisCol > board[0].length || thisCol < 0){
+	    if(thisRow >= board.length || thisRow < 0 ||
+	       thisCol >= board[0].length || thisCol < 0){
 		return false;
 	    }
 	    else if(board[thisRow][thisCol] == 0){
