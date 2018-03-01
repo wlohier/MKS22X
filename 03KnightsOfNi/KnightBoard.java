@@ -27,25 +27,25 @@ public class KnightBoard{
     }
     
     public boolean solve(int startRow, int startCol){
-	//checkBoard();
+	checkBoard();
 	return solveHelp(startRow, startCol, 1);
     }
 
     public boolean solveHelp(int startRow, int startCol, int num){
-	if(num > board.length * board[0].length){
+	if(num >= board.length * board[0].length-1){
 	    return true;
 	}
 	for(int i = 0; i < positions.length; i++){
 	    int thisRow = startRow + positions[i][0];
 	    int thisCol = startCol + positions[i][1];
-	    if(thisRow >= board.length || thisRow < 0 ||
-	       thisCol >= board[0].length || thisCol < 0){
-	        return false;
-	    }
-	    if(board[thisRow][thisCol] == 0){
+	    if(thisRow < board.length && thisRow >= 0 &&
+	       thisCol < board[0].length && thisCol >= 0 &&
+	       board[thisRow][thisCol] == 0){
 		board[startRow][startCol] = num;
-		solveHelp(thisRow, thisCol, num+1);
-	    }
+		if(solveHelp(thisRow, thisCol, num+1)){
+		    return true;
+		}
+	    } board[startRow][startCol] = 0;
 	}
 	return false;
     }
@@ -54,11 +54,15 @@ public class KnightBoard{
 	String ans = "";
 	for(int r = 0; r < board.length; r++){
 	    for(int c = 0; c < board[0].length; c++){
-		if(board[r][c] < 1){
+		if(board[r][c] == 0){
 		    ans += "_ ";
 		}
-		else if(board.length * board[0].length >= 10 && board[r][c] < 10){
-		    ans += board[r][c] + " ";
+	        if(board.length * board[0].length >= 10){
+		    if(board[r][c] > 9){
+			ans += board[r][c] + " ";
+		    }else{
+			ans += "_" + board[r][c] + " ";
+		    }
 		}
 		else{
 		    ans += board[r][c] + " ";
