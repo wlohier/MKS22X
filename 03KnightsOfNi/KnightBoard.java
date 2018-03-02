@@ -25,9 +25,17 @@ public class KnightBoard{
 	    }
 	}
     }
+
+    public void valid(int startRow, int startCol){
+	if(startRow < 0 || startRow >= board.length ||
+	   startCol < 0 || startCol >= board[0].length){
+	    throw new IllegalArgumentException();
+	}
+    }
     
     public boolean solve(int startRow, int startCol){
 	checkBoard();
+	valid(startRow, startCol);
 	return solveHelp(startRow, startCol, 1);
     }
 
@@ -52,6 +60,7 @@ public class KnightBoard{
 
     public int countSolutions(int startRow, int startCol){
 	checkBoard();
+	valid(startRow, startCol);
 	return countHelp(startRow, startCol, 1);
     }
 
@@ -61,9 +70,6 @@ public class KnightBoard{
 	    return 1;
 	}
 	for(int i = 0; i < positions.length; i++){
-	    //System.out.println(Text.go(1, 1));
-	    //System.out.println(this);
-	    //Text.wait(20); //adjust this delay
 	    int thisRow = startRow + positions[i][0];
 	    int thisCol = startCol + positions[i][1];
 	    if(thisRow < board.length && thisRow >= 0 &&
