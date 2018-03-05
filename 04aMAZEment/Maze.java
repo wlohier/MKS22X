@@ -40,4 +40,42 @@ public class Maze{
 	    throw new IllegalStateException();
 	}
     }
+
+        private void wait(int millis){
+         try {
+             Thread.sleep(millis);
+         }
+         catch (InterruptedException e) {
+         }
+     }
+
+
+    public void setAnimate(boolean b){
+        animate = b;
+    }
+
+
+    public void clearTerminal(){
+        System.out.println("\033[2J\033[1;1H");
+    }
+
+    public String toString(){
+	String ans = "";
+	for(int i = 0; i < maze.length; i++){
+	    for(int j = 0; j < maze.length; j++){
+		ans += maze[i][j];
+	    }
+	    ans += "\n";
+	}
+	return ans;
+    }
+
+    public static void main(String[] args){
+	try{
+	Maze M1 = new Maze("Maze1.txt");
+	System.out.println(M1);
+	}catch(FileNotFoundException e){
+	    System.exit(0);
+	}
+    }
 }
