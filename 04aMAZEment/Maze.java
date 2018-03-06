@@ -36,7 +36,7 @@ public class Maze{
 		if(maze[w][h] == 'S') numS++;
 	    }
 	}
-	if(numS > 1 || numE > 1){
+	if(numS != 1 || numE != 1){
 	    throw new IllegalStateException();
 	}
     }
@@ -57,6 +57,38 @@ public class Maze{
 
     public void clearTerminal(){
         System.out.println("\033[2J\033[1;1H");
+    }
+
+    public int solve(){
+	int SR = 0;
+	int SC = 0;
+	for(int i=0; i < board.length; i++){
+	    for(int j=0; j < board[0].length; j++){
+		if(board[r][c] == 'S'){
+		    SR = i;
+		    SC = j;
+		    board[r][c] = 0;
+		}
+	    }
+	}
+	return solve(SR, SC, 0);
+    }
+
+    public boolean valid(int r, int c){
+	try{
+	    int halpME = board[r][e];
+	}
+    }
+
+    private int solve(int r, int c, int count){
+	if(board[r][c] == 'E'){
+	    return count;
+	}
+	board[r][c] = '@';
+	int[][] params = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+	for(int i=0; i<params.length; i++){
+	    
+	}
     }
 
     public String toString(){
