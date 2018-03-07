@@ -62,12 +62,12 @@ public class Maze{
     public int solve(){
 	int SR = 0;
 	int SC = 0;
-	for(int i=0; i < board.length; i++){
-	    for(int j=0; j < board[0].length; j++){
-		if(board[r][c] == 'S'){
+	for(int i=0; i < maze.length; i++){
+	    for(int j=0; j < maze[0].length; j++){
+		if(maze[i][j] == 'S'){
 		    SR = i;
 		    SC = j;
-		    board[r][c] = 0;
+		    maze[i][j] = '@';
 		}
 	    }
 	}
@@ -76,19 +76,34 @@ public class Maze{
 
     public boolean valid(int r, int c){
 	try{
-	    int halpME = board[r][e];
+	    maze[r][c] = maze[r][c];
+	    return true;
+	}
+	catch(IndexOutOfBoundsException e){
+	    return false;
 	}
     }
 
     private int solve(int r, int c, int count){
-	if(board[r][c] == 'E'){
+	if(animate){
+            clearTerminal();
+            System.out.println(this);
+            wait(20);
+        }
+	
+	if(maze[r][c] == 'E'){
 	    return count;
 	}
-	board[r][c] = '@';
+	
+	maze[r][c] = '@';
 	int[][] params = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 	for(int i=0; i<params.length; i++){
-	    
+	    if(valid(r+params[i][0], c+params[i][1])){
+		return count + solve(r+params[i][0], c+params[i][1], count+1);
+	    }
 	}
+	maze[r][c] = '.';
+	return -1;
     }
 
     public String toString(){
@@ -108,6 +123,7 @@ public class Maze{
 	System.out.println(M1);
 	}catch(FileNotFoundException e){
 	    System.exit(0);
+	    System.out.println("Maze not found");
 	}
     }
 }
