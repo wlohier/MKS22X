@@ -1,5 +1,7 @@
 import java.util.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.lang.*;
 
 public class Maze{
     
@@ -10,22 +12,16 @@ public class Maze{
 	animate = false;
 	File f = new File(filename);
 	Scanner in = new Scanner(f);
-	int width = 0;
-        if(in.hasNext()){
-	    width = in.nextLine().length();
-	}
-	int height = 0;
-	while(in.hasNext()){
-	    height++;
-	}
-	maze = new char[width][height];
-	int ind = 0;
-	while(in.hasNext()){
+	ArrayList<String> lines = new ArrayList<String>();
+        while(in.hasNext()){
 	    String line = in.nextLine();
-	    for(int i = 0; i < line.length(); i++){
-		maze[i][ind] = line.charAt(i);
+	    lines.add(line);
+	}
+	maze = new char[lines.size()][lines.get(0).length()];
+        for(int i = 0; i < lines.size(); i++){
+	    for(int j = 0; j < lines.get(0).length(); j++){
+		maze[i][j] = lines.get(i).charAt(j);
 	    }
-	    ind++;
 	}
 
 	int numS = 0;
