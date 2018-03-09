@@ -9,7 +9,7 @@ public class Maze{
     private boolean animate;
 
     public Maze(String filename) throws FileNotFoundException{
-	animate = false;
+	animate = true;
 	File f = new File(filename);
 	Scanner in = new Scanner(f);
 	ArrayList<String> lines = new ArrayList<String>();
@@ -19,7 +19,7 @@ public class Maze{
 	}
 	maze = new char[lines.size()][lines.get(0).length()];
         for(int i = 0; i < lines.size(); i++){
-	    for(int j = 0; j < lines.get(0).length(); j++){
+	    for(int j = 0; j < lines.get(i).length(); j++){
 		maze[i][j] = lines.get(i).charAt(j);
 	    }
 	}
@@ -72,8 +72,10 @@ public class Maze{
 
     public boolean valid(int r, int c){
 	try{
-	    maze[r][c] = maze[r][c];
-	    return true;
+	    if(maze[r][c] != '#' && maze[r][c] != '@' && maze[r][c] != '.'){
+		return true;
+	    }
+	    return false;
 	}
 	catch(IndexOutOfBoundsException e){
 	    return false;
@@ -84,7 +86,7 @@ public class Maze{
 	if(animate){
             clearTerminal();
             System.out.println(this);
-            wait(20);
+            wait(30);
         }
 	
 	if(maze[r][c] == 'E'){
@@ -95,7 +97,9 @@ public class Maze{
 	int[][] params = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 	for(int i=0; i<params.length; i++){
 	    if(valid(r+params[i][0], c+params[i][1])){
-		return count + solve(r+params[i][0], c+params[i][1], count+1);
+		if(solve(r+params[i][0], c+params[i][1], count+1) != -1){
+		    return count;
+		}
 	    }
 	}
 	maze[r][c] = '.';
@@ -105,7 +109,7 @@ public class Maze{
     public String toString(){
 	String ans = "";
 	for(int i = 0; i < maze.length; i++){
-	    for(int j = 0; j < maze.length; j++){
+	    for(int j = 0; j < maze[0].length; j++){
 		ans += maze[i][j];
 	    }
 	    ans += "\n";
@@ -116,6 +120,7 @@ public class Maze{
     public static void main(String[] args){
 	try{
 	Maze M1 = new Maze("Maze1.txt");
+	M1.solve();
 	System.out.println(M1);
 	}catch(FileNotFoundException e){
 	    System.exit(0);
