@@ -1,20 +1,20 @@
+import java.util.Random;
+
 public class Partition{
     public static void partition(int[] nums, int start, int end){
-	random Ran = new random();
+	Random Ran = new Random();
 	int RI = (Ran.nextInt()%(end - start))+start;
-	swap(nums, start, RI);
-	swap(nums, i, start);
+	swap(nums, 0, RI);
         while(start < end){
-	    if(nums[j] < Rih & j > i){
-		addFirst(nums[j], start);
-		start+=1;
+	    if(nums[start] > nums[0]){
+	        swap(nums, start, end);
+		end--;
 	    }
-	    else if(nums[j] > Rih & j < i){
-		addLast(nums[j], end);
-		last -= 1
+	    else{
+		start++;
 	    }
-	    start++
 	}
+	swap(nums, 0, end);
     }
 
     public static void swap(int[] nums, int I1, int I2){
