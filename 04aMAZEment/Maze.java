@@ -7,9 +7,10 @@ public class Maze{
     
     private char[][] maze;
     private boolean animate;
+   
 
     public Maze(String filename) throws FileNotFoundException{
-	animate = true;
+	animate = false;
 	File f = new File(filename);
 	Scanner in = new Scanner(f);
 	ArrayList<String> lines = new ArrayList<String>();
@@ -58,6 +59,8 @@ public class Maze{
     public int solve(){
 	int SR = 0;
 	int SC = 0;
+	int ER = 0;
+	int EC = 0;
 	for(int i=0; i < maze.length; i++){
 	    for(int j=0; j < maze[0].length; j++){
 		if(maze[i][j] == 'S'){
@@ -65,9 +68,14 @@ public class Maze{
 		    SC = j;
 		    maze[i][j] = '@';
 		}
+		if(maze[i][j] == 'E'){
+		    ER = i;
+		    EC = j;
+		}
 	    }
 	}
-	return solve(SR, SC, 0);
+        solve(SR, SC, 0);
+	return solveCount(ER, EC);
     }
 
     public boolean valid(int r, int c){
@@ -98,11 +106,33 @@ public class Maze{
 	for(int i=0; i<params.length; i++){
 	    if(valid(r+params[i][0], c+params[i][1])){
 		if(solve(r+params[i][0], c+params[i][1], count+1) != -1){
+<<<<<<< HEAD
 		    return count + 1;
+=======
+		   return count;
+>>>>>>> 8d1321723c3ecf0cf69767be8ae2a281352f73d3
 		}
 	    }
 	}
 	maze[r][c] = '.';
+	return -1;
+    }
+
+    private int solveCount(int ER, int EC){
+	int ans = 0;
+	for(int i=0; i < maze.length; i++){
+	    for(int j=0; j<maze[0].length; j++){
+		if(maze[i][j] == '@'){
+		    ans += 1;
+		}
+	    }
+	}
+        int[][] params = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+	for(int k = 0; k<params.length;k++){
+	    if(maze[ER + params[k][0]][EC + params[k][1]] == '@'){
+		return ans;
+	    }
+	}
 	return -1;
     }
 
@@ -122,6 +152,7 @@ public class Maze{
 	Maze M1 = new Maze("Maze1.txt");
 	Maze M2 = new Maze("Maze2.txt");
 	Maze M3 = new Maze("Maze3.txt");
+<<<<<<< HEAD
 	Maze M4 = new Maze("Maze4.txt");
 	System.out.println(M1.solve());
         //M2.solve();
@@ -132,6 +163,11 @@ public class Maze{
 	//System.out.println(M4.solve());
 	
 	
+=======
+	//System.out.println(M1.solve());
+	//System.out.println(M2.solve());
+	System.out.println(M3.solve());
+>>>>>>> 8d1321723c3ecf0cf69767be8ae2a281352f73d3
 	}catch(FileNotFoundException e){
 	    System.exit(0);
 	    System.out.println("Maze not found");
