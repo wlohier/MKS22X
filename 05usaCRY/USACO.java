@@ -75,19 +75,19 @@ public class USACO{
 	try{
 	    File f = new File(filename);
 	    Scanner in = new Scanner(f);
-	    Arraylist<String> lines = new ArrayList<String>();
+	    ArrayList<String> lines = new ArrayList<String>();
 	    while(in.hasNext()){
-		string line = in.nextLine();
+		String line = in.nextLine();
 		lines.add(line);
 	    }
-	    int end = lines.length - 1;
-	    int N = java.lang.Integer.parseInt(lines.get(0).charAt(0));
-	    int M = java.lang.Integer.parseInt(lines.get(0).charAt(2));
-	    int T = java.lang.Integer.parseInt(lines.get(0).charAt(4));
-	    int R1 = java.lang.Integer.parseInt(lines.get(end).charAt(0));
-	    int C1 = java.lang.Integer.parseInt(lines.get(end).charAt(2));
-	    int R2 = java.lang.Integer.parseInt(lines.get(end).charAt(4));
-	    int C2  = java.lang.Integer.parseInt(lines.get(end).charAt(6));
+	    int end = lines.size() - 1;
+	    int N = lines.get(0).charAt(0) - 48;
+	    int M = lines.get(0).charAt(2) - 48;
+	    int T = lines.get(0).charAt(4) - 48;
+	    int R1 = lines.get(end).charAt(0) - 48;
+	    int C1 = lines.get(end).charAt(2) - 48;
+	    int R2 = lines.get(end).charAt(4) - 48;
+	    int C2  = lines.get(end).charAt(6) - 48;
 	    lines.remove(0);
 	    lines.remove(end);
 	    char[][] board = new char[N][M];
@@ -95,11 +95,50 @@ public class USACO{
 	    int[][] past = new int[N][M];
 	    for(int i = 0; i < board.length; i++){
 		for(int j = 0; j < board[0].length; j++){
-		    board[i][j] = 
+		    board[i][j] = lines.get(i).charAt(j);
+		    current[i][j] = 0;
+		    past[i][j] = 0;
 		}
 	    }
-	    
-	    
+	    board[R1][C1] = 1;
+	    for(int time = T; time < 0; time--){
+		if(time % 2 == 0){
+		    swap(board, current, past);
+		}
+		else{
+		    swap(board, past, current);
+		}
+	    }
+	    if(T%2 == 0){
+		return current[R2][C2];
+	    }
+	    return past[R2][C2];
+	}
+	catch(FileNotFoundException e){
+	    System.exit(0);
+	    System.out.println("file not found");
+	}
+	return -1;
+    }
+
+    public static void swap(char[][] board, int[][] current, int[][] past){
+	for(int i = 0; i < board.length; i++){
+	    for(int j = 0; j < board[0].length; j++){
+		if(board[i][j] != '*'){
+		    if(i > 0){
+			current[i][j] += past [i-1][j];
+		    }
+		    if(i < board.length - 1){
+			current[i][j] += past[i+1][j];
+		    }
+		    if(j > 0){
+			current[i][j] += past[i][j-1];
+		    }
+		    if(j < board[0].length - 1){
+			current[i][j] += past[i][j+1];
+		    }
+		}
+	    }
 	}
     }
 }
