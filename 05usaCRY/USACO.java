@@ -20,11 +20,11 @@ public class USACO{
 	    }
 	    lines.remove(0);
 	    int[][] board = new int[RCEN[0]][RCEN[1]];
-	    for(int r = 0; r<RCEN[0]; r++){
-		for(int c = 0; c<RCEN[1]; c++){
+	    for(int r = 0; r<board.length; r++){
+		for(int c = 0; c<board[0].length; c++){
 		    board[r][c] = java.lang.Integer.parseInt(lines.get(0).split(" ")[c]);
-		    lines.remove(0);
 		}
+		lines.remove(0);
 	    }
 	    for(int s=0; s<lines.size();s++){
 		int[] RCD = new int[3];
@@ -58,8 +58,8 @@ public class USACO{
 		    board[i][j] = RCEN[2] - board[i][j];
 		    if(board[i][j] < 0){
 			board[i][j] = 0;
-			agg += board[i][j];
 		    }
+		    agg += board[i][j];
 		}
 	    }
 	    return 72*72*agg;
@@ -81,15 +81,17 @@ public class USACO{
 		lines.add(line);
 	    }
 	    int end = lines.size() - 1;
-	    int N = lines.get(0).charAt(0) - 48;
-	    int M = lines.get(0).charAt(2) - 48;
-	    int T = lines.get(0).charAt(4) - 48;
-	    int R1 = lines.get(end).charAt(0) - 48;
-	    int C1 = lines.get(end).charAt(2) - 48;
-	    int R2 = lines.get(end).charAt(4) - 48;
-	    int C2  = lines.get(end).charAt(6) - 48;
+	    String[] lineSplit = lines.get(0).split(" ");
+	    String[] EndlineSplit = lines.get(end).split(" ");
+	    int N = java.lang.Integer.parseInt(lineSplit[0]);
+	    int M = java.lang.Integer.parseInt(lineSplit[1]);
+	    int T = java.lang.Integer.parseInt(lineSplit[2]);
+	    int R1 = java.lang.Integer.parseInt(EndlineSplit[0]);
+	    int C1 = java.lang.Integer.parseInt(EndlineSplit[1]);
+	    int R2 = java.lang.Integer.parseInt(EndlineSplit[2]);
+	    int C2  = java.lang.Integer.parseInt(EndlineSplit[3]);
 	    lines.remove(0);
-	    lines.remove(end);
+	    lines.remove(end - 1);
 	    char[][] board = new char[N][M];
 	    int[][] current = new int[N][M];
 	    int[][] past = new int[N][M];
@@ -100,19 +102,19 @@ public class USACO{
 		    past[i][j] = 0;
 		}
 	    }
-	    board[R1][C1] = 1;
-	    for(int time = T; time < 0; time--){
-		if(time % 2 == 0){
+	    past[R1 - 1][C1 - 1] = 1;
+	    for(int time = 1; time <= T; time++){
+		if(time % 2 == 1){
 		    swap(board, current, past);
 		}
 		else{
 		    swap(board, past, current);
 		}
 	    }
-	    if(T%2 == 0){
-		return current[R2][C2];
+	    if(T%2 == 1){
+		return current[R2 - 1][C2 - 1];
 	    }
-	    return past[R2][C2];
+	    return past[R2 - 1][C2 - 1];
 	}
 	catch(FileNotFoundException e){
 	    System.exit(0);
@@ -124,21 +126,28 @@ public class USACO{
     public static void swap(char[][] board, int[][] current, int[][] past){
 	for(int i = 0; i < board.length; i++){
 	    for(int j = 0; j < board[0].length; j++){
+		int sum = 0;
 		if(board[i][j] != '*'){
 		    if(i > 0){
-			current[i][j] += past [i-1][j];
+		        sum += past [i-1][j];
 		    }
 		    if(i < board.length - 1){
-			current[i][j] += past[i+1][j];
+		        sum += past[i+1][j];
 		    }
 		    if(j > 0){
-			current[i][j] += past[i][j-1];
+		        sum += past[i][j-1];
 		    }
 		    if(j < board[0].length - 1){
-			current[i][j] += past[i][j+1];
+		        sum += past[i][j+1];
 		    }
 		}
+		current[i][j] = sum;
 	    }
 	}
+    }
+
+
+    public static void main(String[] args){
+	System.out.println(USACO.bronze("test.txt"));
     }
 }
