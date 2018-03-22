@@ -29,9 +29,10 @@ public class USACO{
 	    for(int s=0; s<lines.size();s++){
 		int[] RCD = new int[3];
 		for(int RCDind = 0; RCDind < 3; RCDind++){
-		    RCD[RCDind] = java.lang.Integer.parseInt(lines.get(0).split(" ")[RCDind]);
+		    RCD[RCDind] = java.lang.Integer.parseInt(lines.get(s).split(" ")[RCDind]);
 		}
-		lines.remove(0);
+		RCD[0]-=1;
+		RCD[1]-=1;
 		int max = board[RCD[0]][RCD[1]];
 		for(int bi = 0; bi < 3; bi++){
 		    for(int bc = 0; bc < 3; bc++){
@@ -145,7 +146,6 @@ public class USACO{
 	    }
 	}
     }
-
 
     public static void main(String[] args){
 	System.out.println(USACO.bronze("test.txt"));
