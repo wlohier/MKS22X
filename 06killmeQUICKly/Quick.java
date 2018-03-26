@@ -11,7 +11,7 @@ public class Quick{
 	if(low < high){
 	    int k = partition(nums, low, high);
 	    sort(nums, k+1, high);
-	    sort(nums, low, k - 1);
+	    sort(nums, low, k-1);
 	}
     }
 
@@ -44,11 +44,11 @@ public class Quick{
 	    else{
 		start++;
 	    }
-	    System.out.println(Arrays.toString(nums));
+	    //System.out.println(Arrays.toString(nums));
 	}
 	
         swap(nums, temp, start+1);
-	System.out.println(Arrays.toString(nums));
+	//System.out.println(Arrays.toString(nums));
 	return start+1;
     }
 
