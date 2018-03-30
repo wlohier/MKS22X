@@ -8,15 +8,38 @@ public class MyLinkedList{
 	last = null;
     }
 
-    public boolean add(int i){
+    public boolean add(Integer i){
 	Node n = new Node(i);
 	last.setNext(n);
+	last = n;
 	size++;
 	return true;
     }
 
-    public boolean add(int index, int val){
+    public boolean add(int index, Integer val){
+        if(val == list.length()){
+	    add(val);
+	    return true;
+	}
+	if(index == 0){
+	    Node n = new Node(val);
+	    n.setNext(first);
+	    first = n;
+	    size++;
+	    return true;
+	}
+        
+	Node newNode = new Node(val);
+        newNode.setNext(getNode(index));
+	newNode.setPrev(getNode(index-1));
+	getNode(index-1).setNext(newNode);
+	getNode(index+1).setPrev(newNode);
+	size++;
 	return true;
+    }
+
+    public int size(){
+        return size;
     }
 
     private Node getNode(int index){
@@ -29,9 +52,13 @@ public class MyLinkedList{
 	return n;
     }
 
+    private Node getNode(Integer val){
+	
+    }
+
     private class Node{
 	private Node next,prev;
-	int data;
+	private Integer data;
 	private Node(int i){
 	    data = i;
 	    next = null;
