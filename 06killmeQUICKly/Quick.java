@@ -2,14 +2,6 @@ import java.util.*;
 
 public class Quick{
 
-<<<<<<< HEAD
-    public static quickSelect(int[] nums, int k){
-	int start = partition(nums, 0, nums.length-1);
-	if(start < k){
-	    while
-	}
-    }
-=======
 
     public static void quicksort(int[] nums){
         sort(nums, 0, nums.length-1);
@@ -37,35 +29,33 @@ public class Quick{
 	}
 	return nums[start];
     }
-
-    
->>>>>>> 6b94a1402edae9a2e76c538df45a5cf6858e51cc
     
     public static int partition(int[] nums, int start, int end){
-        int pivot = nums[end];
-	int temp = end;
-	end--;
-        while(start < end){
+        Random n = new Random();
+	int Rihanna = (n.nextInt(end - start)) + start;
+	int pivot = nums[Rihanna];
+	System.out.println(pivot);
+	int temp = start;
+	int temp2 = end;
+	swap(nums, start, Rihanna);
+	start++;
+        while(start < temp2){
+	    System.out.println(start);
 	    if(nums[start] > pivot){
-	        swap(nums, start, end);
-		end--;
+	        swap(nums, start, temp2);
+		temp2--;
 	    }
 	    else{
 		start++;
 	    }
-<<<<<<< HEAD
 	}
-        swap(nums, temp, start + 1);
-	System.out.println(Arrays.toString(nums));
-	return start + 1;
-=======
-	    //System.out.println(Arrays.toString(nums));
+	if (nums[start] > pivot){
+	    start --;
 	}
-	
-        swap(nums, temp, start+1);
-	//System.out.println(Arrays.toString(nums));
-	return start+1;
->>>>>>> 6b94a1402edae9a2e76c538df45a5cf6858e51cc
+	swap(nums,temp,start);
+	System.out.println(start);
+	return start;
+
     }
 
     public static void swap(int[] nums, int I1, int I2){
@@ -73,16 +63,14 @@ public class Quick{
 	nums[I1] = nums[I2];
 	nums[I2] = temp;
     }
-<<<<<<< HEAD
-=======
 
     public static void main(String[] args){
 	int[] nums = {9,8,7,6,5,4,3,2,1,0};
+	partition(nums,0,9);
 	System.out.println(Arrays.toString(nums));
 	//Quick.partition(nums, 0, 9);
 	//Quick.partition(nums, 1, 9);
-	Quick.quicksort(nums);
+	quicksort(nums);
         System.out.println(Arrays.toString(nums));
     }
->>>>>>> 6b94a1402edae9a2e76c538df45a5cf6858e51cc
 }
