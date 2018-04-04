@@ -4,7 +4,7 @@ public class Quick{
 
 
     public static void quicksort(int[] nums){
-	if(nums.length < 1){
+	if(nums.length < 2){
 	    return;
 	}
         sort(nums, 0, nums.length-1);
