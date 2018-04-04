@@ -4,14 +4,17 @@ public class Quick{
 
 
     public static void quicksort(int[] nums){
+	if(nums.length < 1){
+	    return;
+	}
         sort(nums, 0, nums.length-1);
     }
 
     public static void sort(int[] nums, int low, int high){
 	if(low < high){
-	    int k = partition(nums, low, high);
-	    sort(nums, k+1, high);
-	    sort(nums, low, k-1);
+	    int[] k = Dpartition(nums, low, high);
+	    sort(nums, k[1], high);
+	    sort(nums, low, k[0] - 1);
 	}
     }
 
@@ -30,6 +33,37 @@ public class Quick{
 	return nums[start];
     }
     
+    public static int[] Dpartition(int[] nums, int start, int end){
+        Random n = new Random();
+	int Rihanna = (n.nextInt(end - start)) + start;
+	//System.out.println("pivot:" + nums[Rihanna]);
+	swap(nums, start, Rihanna);	
+	int temp = start;
+	int temp2 = end;
+	int Beyonce = start+1;
+        while(Beyonce <= temp2){
+	    //System.out.println("start =" + temp);
+	    //System.out.println("comp:" + Beyonce);
+	    //System.out.println("end:" + temp2);
+	    if(nums[Beyonce] > nums[temp]){
+	        swap(nums, Beyonce, temp2);
+		temp2--;
+	    }
+	    else if(nums[Beyonce] == nums[temp]){
+		Beyonce++;
+	    }
+	    else{
+		swap(nums, Beyonce, temp);
+		Beyonce++;
+		temp++;
+	    }
+	    //System.out.println(Arrays.toString(nums));
+	}
+	int[] ans = {temp, Beyonce};
+        return ans;
+
+    }
+
     public static int partition(int[] nums, int start, int end){
         Random n = new Random();
 	int Rihanna = (n.nextInt(end - start)) + start;
@@ -65,12 +99,12 @@ public class Quick{
     }
 
     public static void main(String[] args){
-	int[] nums = {9,8,7,6,5,4,3,2,1,0};
-	partition(nums,0,9);
-	System.out.println(Arrays.toString(nums));
-	//Quick.partition(nums, 0, 9);
-	//Quick.partition(nums, 1, 9);
+	int[] nums = {9,8,7,3,7,3,7,3,7,3,7,3,7,3,7,3,7,3,7,3,7,2,3,14,14,14,5};
+	//Dpartition(nums,0,9);
+	//System.out.println(Arrays.toString(nums));
+	//Quick.Dpartition(nums, 0, 9);
+	//Quick.Dpartition(nums, 1, 9);
 	quicksort(nums);
-        System.out.println(Arrays.toString(nums));
+        //System.out.println(Arrays.toString(nums));
     }
 }
