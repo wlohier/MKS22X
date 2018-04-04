@@ -28,8 +28,8 @@ public class Merge{
 		index++;
 		middleton++;
 	}
-	System.out.println("data: "+ Arrays.toString(data));
-	System.out.println("temp: "+ Arrays.toString(temp));
+	//System.out.println("data: "+ Arrays.toString(data));
+	//System.out.println("temp: "+ Arrays.toString(temp));
     }
 
     public static void mergesort(int[] nums){
