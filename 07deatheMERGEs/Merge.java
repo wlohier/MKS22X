@@ -57,7 +57,7 @@ public class Merge{
     public static void main(String[] args){
 	int[] data = {1,4,33,6,2,5,0,0,0,6,4,6,3,6,9,2,234,6,3};
 	mergesort(data);
-	System.out.println(Arrays.toString(data));
+	//System.out.println(Arrays.toString(data));
     }
     
 }
