@@ -17,25 +17,26 @@ public class MyLinkedList{
     }
 
     public boolean add(int index, Integer val){
-        if(val == list.length()){
+        if(index == size()){
 	    add(val);
 	    return true;
 	}
-	if(index == 0){
+	else if(index == 0){
 	    Node n = new Node(val);
 	    n.setNext(first);
 	    first = n;
 	    size++;
 	    return true;
 	}
-        
-	Node newNode = new Node(val);
-        newNode.setNext(getNode(index));
-	newNode.setPrev(getNode(index-1));
-	getNode(index-1).setNext(newNode);
-	getNode(index+1).setPrev(newNode);
-	size++;
-	return true;
+        else{
+	    Node newNode = new Node(val);
+	    newNode.setNext(getNode(index));
+	    newNode.setPrev(getNode(index-1));
+	    getNode(index-1).setNext(newNode);
+	    getNode(index+1).setPrev(newNode);
+	    size++;
+	    return true;
+	}
     }
 
     public int size(){
@@ -44,7 +45,7 @@ public class MyLinkedList{
 
     private Node getNode(int index){
 	int i = 0;
-	Node n = start;
+	Node n = first;
         while(i < index){
 	    n = n.getNext();
 	    i++;
@@ -53,7 +54,7 @@ public class MyLinkedList{
     }
 
     private Node getNode(Integer val){
-	
+	return null;
     }
 
     private class Node{
@@ -73,11 +74,11 @@ public class MyLinkedList{
 	    next = n;
 	}
 
-	private int getPrev(){
+	private Node getPrev(){
 	    return prev;
 	}
 
-	private int setPrev(Node n){
+	private void setPrev(Node n){
 	    prev = n;
 	}
 
@@ -85,12 +86,12 @@ public class MyLinkedList{
 	    return data;
 	}
 
-	private int setVal(int i){
+	private void setVal(int i){
 	    data = i;
 	}
 
 	public String toString(){
-	    return "" + i;
+	    return "" + data;
 	}
     }
 }
