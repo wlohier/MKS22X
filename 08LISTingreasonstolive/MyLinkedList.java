@@ -73,7 +73,20 @@ public class MyLinkedList{
 
     public boolean remove(Integer value){
 	Node n = getNode(value);
-	return null;
+	if(n.equals(null)){
+	    return false;
+	}
+        n.getPrev().setNext(n.getNext());
+	n.getNext().setPrev(n.getPrev());
+	return true;
+    }
+
+    public Integer remove(int index){
+	Node n = getNode(index);
+	Integer i = n.getVal();
+	n.getPrev().setNext(n.getNext());
+	n.getNext().setPrev(n.getPrev());
+	return i;
     }
 
     private Node getNode(int index){
