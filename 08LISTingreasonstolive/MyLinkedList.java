@@ -23,6 +23,10 @@ public class MyLinkedList{
     }
 
     public boolean add(int index, Integer val){
+	if(index >= size || index < 0){
+	    throw new IndexOutOfBoundsException();
+	}
+	
         if(index == size()){
 	    add(val);
 	    return true;
@@ -50,10 +54,16 @@ public class MyLinkedList{
     }
 
     public Integer get(int index){
+	if(index > size()-1 || index < 0){
+	    throw new IndexOutOfBoundsException();
+	}
 	return getNode(index).getVal();
     }
 
     public Integer set(int index, Integer value){
+	if(index >= size() || index < 0){
+	    throw new indexOutOfBoundsException();
+	}
 	Integer i = getNode(index).getVal();
 	getNode(index).setVal(value);
 	return i;
@@ -82,6 +92,10 @@ public class MyLinkedList{
     }
 
     public Integer remove(int index){
+	if(index >= size() || index < 0){
+	    throw new IndexOutOfBoundsException();
+	}
+	
 	Node n = getNode(index);
 	Integer i = n.getVal();
 	n.getPrev().setNext(n.getNext());
