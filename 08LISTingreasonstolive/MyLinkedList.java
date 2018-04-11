@@ -16,6 +16,12 @@ public class MyLinkedList{
 	return true;
     }
 
+    public void clear(){
+	first = null;
+	last = null;
+	size = 0;
+    }
+
     public boolean add(int index, Integer val){
         if(index == size()){
 	    add(val);
@@ -43,6 +49,33 @@ public class MyLinkedList{
         return size;
     }
 
+    public Integer get(int index){
+	return getNode(index).getVal();
+    }
+
+    public Integer set(int index, Integer value){
+	Integer i = getNode(index).getVal();
+	getNode(index).setVal(value);
+	return i;
+    }
+
+    public int indexOf(Integer value){
+	int i = 0;
+	Node n = first;
+	while(i < size()){
+	    if(n.getVal().equals(value)){
+		return i;
+	    }
+	    i++;
+	    n = n.getNext();
+	} return -1;
+    }
+
+    public boolean remove(Integer value){
+	Node n = getNode(value);
+	return null;
+    }
+
     private Node getNode(int index){
 	int i = 0;
 	Node n = first;
@@ -54,6 +87,15 @@ public class MyLinkedList{
     }
 
     private Node getNode(Integer val){
+	int i = 0;
+	Node n = first;
+	while(i < size()){
+	    if(n.getVal().equals(val)){
+		return n;
+	    }
+	    i++;
+	    n = n.getNext();
+	}
 	return null;
     }
 
