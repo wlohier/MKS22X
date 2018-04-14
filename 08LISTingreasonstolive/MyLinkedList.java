@@ -62,7 +62,7 @@ public class MyLinkedList{
 
     public Integer set(int index, Integer value){
 	if(index >= size() || index < 0){
-	    throw new indexOutOfBoundsException();
+	    throw new IndexOutOfBoundsException();
 	}
 	Integer i = getNode(index).getVal();
 	getNode(index).setVal(value);
@@ -126,6 +126,21 @@ public class MyLinkedList{
 	return null;
     }
 
+    public String toString(){
+	String ans = "[";
+	int i = 0;
+	Node n = first;
+        while(i < size()){
+	    ans += n.toString();
+	    ans += ", ";
+	    n = n.getNext();
+	    i++;
+	}
+	ans = ans.substring(0, ans.length()-2);
+	ans += "]";
+	return ans;
+    }
+
     private class Node{
 	private Node next,prev;
 	private Integer data;
@@ -151,7 +166,7 @@ public class MyLinkedList{
 	    prev = n;
 	}
 
-	private int getVal(){
+	private Integer getVal(){
 	    return data;
 	}
 
