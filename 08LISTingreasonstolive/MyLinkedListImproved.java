@@ -1,8 +1,11 @@
-public class MyLinkedListImproved<T>{
+import java.util.Iterator;
+@SuppressWarnings("unchecked")
+
+public class MyLinkedListImproved<T> implements Iterable<T>{
     private int size;
     private Node first;
     private Node last;
-    public MyLinkedList(){
+    public MyLinkedListImproved(){
 	size = 0;
 	first = null;
 	last = null;
@@ -60,7 +63,7 @@ public class MyLinkedListImproved<T>{
 	return getNode(index).getVal();
     }
 
-    public T set(int index, Integer value){
+    public T set(int index, T value){
 	if(index >= size() || index < 0){
 	    throw new IndexOutOfBoundsException();
 	}
@@ -141,6 +144,35 @@ public class MyLinkedListImproved<T>{
 	return ans;
     }
 
+    public Iterator<T> iterator(){
+	return new ListIterator(first);
+    }
+
+    private class ListIterator implements Iterator<T>{
+	private Node current;
+	
+	public ListIterator(Node s){
+	    current = s;
+	}
+
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+
+	public boolean hasNext(){
+	    return !current.getNext().equals(null);
+	}
+	public Node next(){
+	    if(hasNext()){
+		Node currentNode = current;
+		current = current.getNext();
+		return currentNode;
+	    } else{
+		System.exit(0);
+	    }
+	}
+    }
+
     private class Node{
 	private Node next,prev;
 	private T data;
@@ -170,7 +202,7 @@ public class MyLinkedListImproved<T>{
 	    return data;
 	}
 
-	private void setVal(int i){
+	private void setVal(T i){
 	    data = i;
 	}
 
