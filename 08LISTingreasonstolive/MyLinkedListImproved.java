@@ -1,7 +1,7 @@
 import java.util.Iterator;
 @SuppressWarnings("unchecked")
 
-public class MyLinkedListImproved<T> implements Iterable<T>{
+public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T>{
     private int size;
     private Node first;
     private Node last;
@@ -129,6 +129,12 @@ public class MyLinkedListImproved<T> implements Iterable<T>{
 	return null;
     }
 
+    public int max(){
+	T current = first.getVal();
+	int index = 0;
+	for(T : 
+    }
+
     public String toString(){
 	String ans = "[";
 	int i = 0;
@@ -143,6 +149,8 @@ public class MyLinkedListImproved<T> implements Iterable<T>{
 	ans += "]";
 	return ans;
     }
+
+    
 
     public Iterator<T> iterator(){
 	return new ListIterator(first);
