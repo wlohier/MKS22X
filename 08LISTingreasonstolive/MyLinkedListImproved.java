@@ -162,14 +162,13 @@ public class MyLinkedListImproved<T> implements Iterable<T>{
 	public boolean hasNext(){
 	    return !current.getNext().equals(null);
 	}
-	public Node next(){
+	public T next(){
 	    if(hasNext()){
-		Node currentNode = current;
 		current = current.getNext();
-		return currentNode;
 	    } else{
 		System.exit(0);
 	    }
+	    return current.getPrev().getVal();
 	}
     }
 
