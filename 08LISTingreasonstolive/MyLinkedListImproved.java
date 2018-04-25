@@ -167,6 +167,13 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
 	return minIndex;
     }
 
+    public void extend(MyLinkedListImproved<T> other){
+	last.setNext(other.get(0));
+	last = other.get(other.size() - 1);
+	size = size() + other.size();
+	other.clear();
+    }
+
     public String toString(){
 	String ans = "[";
 	int i = 0;
