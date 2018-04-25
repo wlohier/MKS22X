@@ -130,9 +130,41 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
     }
 
     public int max(){
-	T current = first.getVal();
+	if(size() < 1){
+	    return -1;
+	}
+	T maxT = first.getVal();
+	Node current = first;
 	int index = 0;
-	for(T : 
+	int maxIndex = 0;
+	while(index < size()){
+	    T n = current.getVal();
+	    if(n.compareTo(maxT) > 0){
+		maxIndex = index;
+	    }
+	    current = current.getNext();
+	    index++;
+	}
+	return maxIndex;
+    }
+
+    public int min(){
+	if(size() < 1){
+	    return -1;
+	}
+	T minT = first.getVal();
+	Node current = first;
+	int index = 0;
+	int minIndex = 0;
+	while(index < size()){
+	    T n = current.getVal();
+	    if(n.compareTo(minT) < 0){
+		minIndex = index;
+	    }
+	    current = current.getNext();
+	    index++;
+	}
+	return minIndex;
     }
 
     public String toString(){
