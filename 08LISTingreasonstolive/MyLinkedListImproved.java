@@ -11,6 +11,14 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
 	last = null;
     }
 
+    public Node getFirst(){
+	return first;
+    }
+
+    public Node getLast(){
+	return last;
+    }
+
     public boolean add(T i){
 	Node n = new Node(i);
 	last.setNext(n);
@@ -168,8 +176,8 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
     }
 
     public void extend(MyLinkedListImproved<T> other){
-	last.setNext(other.get(0));
-	last = other.get(other.size() - 1);
+	last.setNext(other.getFirst());
+	last = other.getLast();
 	size = size() + other.size();
 	other.clear();
     }
