@@ -28,7 +28,8 @@ public class Sort extends MyLinkedListImproved{
     }
     
     private static void radixSortPositive(MyLinkedListImproved<Integer> data){
-        @SuppressWarnings("unchecked")MylinkedListImproved<Integer>[] bucket = new MyLinkedListImproved<Integer>[10];
+        @SuppressWarnings("unchecked")
+	MyLinkedListImproved<Integer>[] bucket = new MyLinkedListImproved[10];
 	for(int Bey=0; Bey < 10; Bey++){
 	    bucket[Bey] = new MyLinkedListImproved<Integer>();
 	}
@@ -51,6 +52,33 @@ public class Sort extends MyLinkedListImproved{
 
 	    data.remove(0);
 	    
+	}
+	
+    }
+
+    private static void radixSortNegative(MyLinkedListImproved<Integer> data){
+	@SuppressWarnings("unchecked")
+	    MyLinkedListImproved<Integer>[] bucket = new MyLinkedListImproved[10];
+	for(int Bey=0; Bey < 10; Bey++){
+	    bucket[Bey] = new MyLinkedListImproved<Integer>();
+	}
+
+	int minVal = data.min();
+	int numDigs = log(minVal);
+
+	for(int dig = 0; dig < numDigs; dig++){
+	    for(Integer i : data){
+		int num = (int)(i/java.lang.Math.pow(10, dig))%10;
+		bucket[num].add(i);
+	    }
+
+	    data.clear();
+	    data.add(-1);
+
+	    for(int riri = 0; riri < 10; riri++){
+		data.extend(bucket[riri]);
+	    }
+	    data.remove(0);
 	}
 	
     }
