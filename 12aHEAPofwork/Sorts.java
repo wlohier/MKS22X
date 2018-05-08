@@ -3,11 +3,9 @@ public class Sorts{
     }
 
     public static void heapify(int[]data){
-	for(int i = data.len);
-    }
-
-    public static pushDOWN(index i){
-	
+	for(int i = data.length-1; i >= 0; i--){
+	    pushDMax(data[i], i);
+	}
     }
 
     private static void pushDMax(int val, int index){
