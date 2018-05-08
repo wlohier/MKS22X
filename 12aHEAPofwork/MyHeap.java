@@ -121,4 +121,14 @@ public class MyHeap<E extends Comparable<E>>{
 	}
 	data = newdata;
     }
+
+    public String toString(){
+	String ans = "[";
+	for(int i = 0; i < size; i++){
+	    ans += data[i] + ",";
+	}
+	ans = ans.substring(0, ans.length()-1);
+	ans += "]";
+	return ans;
+    }
 }
