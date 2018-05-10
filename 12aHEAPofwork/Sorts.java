@@ -35,4 +35,14 @@ public class Sorts{
 	data[ind1] = data[ind2];
 	data[ind2] = temp;
     }
+
+    public String toString(int[] data){
+	String ans = "[";
+	for(int i = 0; i < size; i++){
+	    ans += data[i] + ",";
+	}
+	ans = ans.substring(0, ans.length()-1);
+	ans += "]";
+	return ans;
+    }
 }
