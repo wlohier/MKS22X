@@ -5,7 +5,7 @@ public class MyHeap<E extends Comparable<E>>{
 
     @SuppressWarnings("unchecked")
     public MyHeap(){
-	data = (E[])new Object[10];
+	data = (E[])new Comparable[10];
 	size = 0;
 	MAX = true;
     }
@@ -18,7 +18,7 @@ public class MyHeap<E extends Comparable<E>>{
 	else{
 	    MAX = false;
 	}
-	data = (E[])new Object[10];
+	data = (E[])new Comparable[10];
 	size = 0;
     }
 
@@ -51,7 +51,7 @@ public class MyHeap<E extends Comparable<E>>{
 
     private void pushMin(E val, int index){
 	int compInd = (index-1)/2;
-        if(compInd > 0){
+        if(compInd >= 0){
 	    if(val.compareTo(data[compInd]) < 0){
 		swap(index, compInd);
 		pushMin(val, compInd);
@@ -61,8 +61,8 @@ public class MyHeap<E extends Comparable<E>>{
 
     private void pushMax(E val, int index){
 	int compInd = (index-1)/2;
-        if(compInd > 0){
-	    if(val.compareTo(data[compInd]) >= 0){
+        if(compInd >= 0){
+	    if(val.compareTo(data[compInd]) > 0){
 		swap(index, compInd);
 		pushMax(val, compInd);
 	    }
@@ -73,14 +73,14 @@ public class MyHeap<E extends Comparable<E>>{
 	int compInd1 = index*2+1;
 	int compInd2 = index*2+2;
 	int comp = compInd1;
-	if(data[compInd1].compareTo(data[compInd2]) < 0){
+	if(compInd2 < size && data[compInd1].compareTo(data[compInd2]) < 0){
 	    comp = compInd2;
 	}
 	if(comp < size){
-	    if(val.compareTo(data[comp]) < 0){
-		swap(index, comp);
-		pushDMax(val, comp);
-	    }
+        if(val.compareTo(data[comp]) < 0){
+	    swap(index, comp);
+	    pushDMax(val, comp);
+	}
 	}
     }
 
@@ -88,14 +88,14 @@ public class MyHeap<E extends Comparable<E>>{
 	int compInd1 = index*2+1;
 	int compInd2 = index*2+2;
 	int comp = compInd1;
-	if(data[compInd1].compareTo(data[compInd2]) > 0){
+	if(compInd2 < size && data[compInd1].compareTo(data[compInd2]) > 0){
 	    comp = compInd2;
 	}
 	if(comp < size){
-	    if(val.compareTo(data[comp]) > 0){
-		swap(index, comp);
-		pushDMin(val, comp);
-	    }
+        if(val.compareTo(data[comp]) > 0){
+	    swap(index, comp);
+	    pushDMin(val, comp);
+        }
 	}
     }
 
@@ -130,5 +130,24 @@ public class MyHeap<E extends Comparable<E>>{
 	ans = ans.substring(0, ans.length()-1);
 	ans += "]";
 	return ans;
+    }
+
+    public static void main(String[] args){
+	MyHeap<Integer> H1 = new MyHeap<>(false);
+	H1.add(1);
+	H1.add(10);
+	H1.add(2);
+	H1.add(11);
+	H1.add(15);
+	H1.add(19);
+	H1.add(5);
+	H1.add(2);
+	H1.add(20);
+	H1.add(100);
+	System.out.println(H1);
+	H1.remove();
+	System.out.println(H1);
+        H1.remove();
+	System.out.println(H1);
     }
 }
