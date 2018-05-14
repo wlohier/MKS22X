@@ -48,6 +48,20 @@ public class RunningMedian{
     }
 
     public String toString(){
-	return "" +  getMedian();
+	return maxH.toString() + minH.toString();
+    }
+
+    public static void main(String[] args){
+	/*
+	RunningMedian RM = new RunningMedian();
+	RM.add(1.0);
+	RM.add(5.0);
+	RM.add(8.0);
+	RM.add(3.0);
+	RM.add(2.0);
+	RM.add(1.0);
+	System.out.println(RM);
+	System.out.println(RM.getMedian());
+	*/
     }
 }
