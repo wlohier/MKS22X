@@ -122,20 +122,19 @@ public class MyDeque<E>{
     }
 
     public static void main(String[]args){
+	/*
 	MyDeque<String> D1 = new MyDeque<>(3);
 	MyDeque<Integer> D2 = new MyDeque<>(5);
 	D1.addFirst("hi");
 	D1.addFirst("Hello");
 	D1.addFirst("Fish");
 	System.out.println(D1);
-	/*
 	D1.removeFirst();
 	System.out.println(D1);
         D1.removeFirst();
 	System.out.println(D1);
 	D1.removeFirst();
 	System.out.println(D1);
-	*/
 	D1.addLast("Tacos");
 	System.out.println(D1);
 	D1.addLast("Cardi");
@@ -146,6 +145,7 @@ public class MyDeque<E>{
 	System.out.println(D1);
 	System.out.println(D1.getFirst());
 	System.out.println(D1.getLast());
+	*/
 	
     }
     
