@@ -44,11 +44,16 @@ public class MyDeque<E>{
 	if(val.equals(null)){
 	    throw new IllegalArgumentException();
 	}
-	if((start-1)%(data.length) == end){
+	if(size == 0){
+	    data[0] = val;
+	    size++;
+	    return;
+	}
+        if(data.length == size()){
 	    resize();
 	}
-	data[(start-1)%data.length] = val;
-	start = (start-1)%data.length;
+	data[(start + data.length-1)%data.length] = val;
+	start = (start + data.length-1)%data.length;
 	size++;
     }
 
@@ -56,10 +61,17 @@ public class MyDeque<E>{
 	if(val.equals(null)){
 	    throw new IllegalArgumentException();
 	}
-	if((end+1)%(data.length)==start){
+	if(size() == 0){
+	    data[0] = val;
+	    size++;
+	    end+=1;
+	    start = data.length-1;
+	    return;
+	}
+	if(data.length == size()){
 	    resize();
 	}
-	data[(end+1)%data.length] = val;
+	data[(end)%data.length] = val;
 	end = (end+1)%data.length;
 	size++;
     }
@@ -71,7 +83,7 @@ public class MyDeque<E>{
 	E ans = data[start];
 	data[start] = null;
 	size--;
-	start = (start+1)%data.length;
+	start = (start+1+data.length)%data.length;
 	return ans;
     }
 
@@ -79,9 +91,9 @@ public class MyDeque<E>{
 	if(size()==0){
 	    throw new NoSuchElementException();
 	}
-	E ans = data[end];
-	data[end] = null;
-	end = (end-1)%data.length;
+	E ans = data[(end+data.length-1)%data.length];
+	data[(end+data.length-1)%data.length] = null;
+	end = (end+data.length-1)%data.length;
 	size--;
 	return ans;
     }
@@ -97,7 +109,44 @@ public class MyDeque<E>{
 	if(size()==0){
 	    throw new NoSuchElementException();
 	}
-	return data[end];
+	return data[(end+data.length-1)%data.length];
+    }
+
+    public String toString(){
+	String ans = "[";
+        for(int i = 0; i < data.length; i++){
+	    ans += data[i] + " ";
+	}
+	ans += "]";
+	return ans;
+    }
+
+    public static void main(String[]args){
+	MyDeque<String> D1 = new MyDeque<>(3);
+	MyDeque<Integer> D2 = new MyDeque<>(5);
+	D1.addFirst("hi");
+	D1.addFirst("Hello");
+	D1.addFirst("Fish");
+	System.out.println(D1);
+	/*
+	D1.removeFirst();
+	System.out.println(D1);
+        D1.removeFirst();
+	System.out.println(D1);
+	D1.removeFirst();
+	System.out.println(D1);
+	*/
+	D1.addLast("Tacos");
+	System.out.println(D1);
+	D1.addLast("Cardi");
+	System.out.println(D1);
+	D1.removeLast();
+	System.out.println(D1);
+	D1.removeLast();
+	System.out.println(D1);
+	System.out.println(D1.getFirst());
+	System.out.println(D1.getLast());
+	
     }
     
 }
