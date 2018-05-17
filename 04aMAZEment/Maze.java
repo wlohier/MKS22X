@@ -106,11 +106,7 @@ public class Maze{
 	for(int i=0; i<params.length; i++){
 	    if(valid(r+params[i][0], c+params[i][1])){
 		if(solve(r+params[i][0], c+params[i][1], count+1) != -1){
-<<<<<<< HEAD
-		    return count + 1;
-=======
 		   return count;
->>>>>>> 8d1321723c3ecf0cf69767be8ae2a281352f73d3
 		}
 	    }
 	}
@@ -152,22 +148,17 @@ public class Maze{
 	Maze M1 = new Maze("Maze1.txt");
 	Maze M2 = new Maze("Maze2.txt");
 	Maze M3 = new Maze("Maze3.txt");
-<<<<<<< HEAD
 	Maze M4 = new Maze("Maze4.txt");
-	System.out.println(M1.solve());
-        //M2.solve();
+	//System.out.println(M1.solve());
         //System.out.println(M2.solve());
 	//M3.solve();
 	//System.out.println(M3.solve());
 	//M4.solve();
-	//System.out.println(M4.solve());
-	
-	
-=======
+	System.out.println(M4.solve());
+
 	//System.out.println(M1.solve());
 	//System.out.println(M2.solve());
-	System.out.println(M3.solve());
->>>>>>> 8d1321723c3ecf0cf69767be8ae2a281352f73d3
+	//System.out.println(M3.solve());
 	}catch(FileNotFoundException e){
 	    System.exit(0);
 	    System.out.println("Maze not found");
