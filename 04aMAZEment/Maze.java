@@ -144,17 +144,18 @@ public class Maze{
     }
 
     public static void main(String[] args){
+	/*
 	try{
-	Maze M1 = new Maze("Maze1.txt");
-	Maze M2 = new Maze("Maze2.txt");
-	Maze M3 = new Maze("Maze3.txt");
-	Maze M4 = new Maze("Maze4.txt");
+	//Maze M1 = new Maze("Maze1.txt");
+	//Maze M2 = new Maze("Maze2.txt");
+	//Maze M3 = new Maze("Maze3.txt");
+	//Maze M4 = new Maze("Maze4.txt");
 	//System.out.println(M1.solve());
         //System.out.println(M2.solve());
 	//M3.solve();
 	//System.out.println(M3.solve());
 	//M4.solve();
-	System.out.println(M4.solve());
+	//System.out.println(M4.solve());
 
 	//System.out.println(M1.solve());
 	//System.out.println(M2.solve());
@@ -163,5 +164,6 @@ public class Maze{
 	    System.exit(0);
 	    System.out.println("Maze not found");
 	}
+	*/
     }
 }
