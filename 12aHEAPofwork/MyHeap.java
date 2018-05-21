@@ -133,9 +133,10 @@ public class MyHeap<E extends Comparable<E>>{
     }
 
     public static void main(String[] args){
-	/*
-	MyHeap<Integer> H1 = new MyHeap<>(false);
+	
+	MyHeap<Integer> H1 = new MyHeap<>();
 	H1.add(1);
+	/*
 	H1.add(10);
 	H1.add(2);
 	H1.add(11);
@@ -149,7 +150,8 @@ public class MyHeap<E extends Comparable<E>>{
 	H1.remove();
 	System.out.println(H1);
         H1.remove();
-	System.out.println(H1);
 	*/
+	System.out.println(H1);
+	
     }
 }
