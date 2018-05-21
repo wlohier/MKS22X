@@ -115,7 +115,7 @@ public class MyHeap<E extends Comparable<E>>{
 
     @SuppressWarnings("unchecked")
     private void resize(){
-	E[] newdata = (E[])new Object[size*2];
+	E[] newdata = (E[])new Comparable[size*2];
 	for(int i = 0; i < size; i++){
 	    newdata[i] = data[i];
 	}
